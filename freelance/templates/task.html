@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    {% if task.owner == request.user %}
+        <a href="{% url 'edit_task' task.id%}">
+            <span class="material-symbols-outlined">
+                edit_note
+            </span>
+        </a>
+    {% endif %}
+    <div class="point">
+        <p><strong>Название</strong>: {{task.name}}</p>
+    </div>
+    <div class="point">
+        <p>{{task.created}}</p>
+    </div>
+    <div class="point">
+        <p><strong>Описание</strong>: {{task.description}}</p>
+    </div>
+    <div class="point">
+        <p><strong>Статус</strong>: {{task.status}}</p>
+    </div>
+    <div class="point">
+        <p><strong>Исполнители</strong>:</p>
+        {% for dev in task.developers.all %}
+            <li>{{ dev }}</li>
+        {% endfor %}
+    </div>
+    {% if request.user in developers %}
+        <div class="point">
+            <a href="{% url 'add_comment' task.id %}">прикрепить решение</a>
+        </div>
+    {% endif %}
+    <div class="point">
+        {% if not task.comments.all %}
+            <p>Решение<strong> НЕ ГОТОВО</strong></p>
+        {% else %}
+            <p><strong>Решение(я):</strong></p>
+            {% for comment in task.comments.all %}
+                <div class="point2">
+                    <p>{{ comment.owner.username }}</p>
+                    {{ comment.comment_content }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

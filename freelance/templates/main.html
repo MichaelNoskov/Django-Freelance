@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="title">Приветствую на главной странице сайта!</h1>
+    <div class="links">
+        {% for page in pages %}
+            <a class="link-item" href="{% url pages.page %}">page</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

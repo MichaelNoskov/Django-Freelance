@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2 class="title">Изменить статус Задачи</h2>
+    <form id="registrationForm" class="form", method="post", action="{% url 'edit_task' task_id%}">
+        {% csrf_token %}
+        {{form}}
+        <input class="submit-button" type="submit" value="сохранить">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <p><strong>Имя:</strong> {{ user.username }}</p>
+    {% if not developer %}
+        <p>Вы ничтожество</p>
+        <a class="link" href="{% url 'developer_evolution' %}">Стать исполнителем</a>
+    {% else %}
+        <p><strong>Должность</strong>: {{developer.position}}</p>
+        <a class="link" href="{% url 'dev_tasks' %}">Ваши задачи (вы исполнитель)</a>
+        <a class="link" href="{% url 'my_tasks' %}">Ваши задачи (вы создатель)</a>
+    {% endif %}
+</div>
+{% endblock %}

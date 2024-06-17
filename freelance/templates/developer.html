@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2 class="title">Стань исполнителем</h2>
+    <label>выбери должность</label>
+    <form id="registrationForm" class="form", method="post", action="{% url 'developer_evolution' %}">
+        {% csrf_token %}
+        {{ form.position }}
+        <input class="submit-button" type="submit" value="Эволюционировать">
+    </form>
+</div>
+{% endblock %}

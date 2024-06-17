@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2 class="title">Новое решение</h2>
+    <form id="registrationForm" class="form", method="post", action="{% url 'add_comment' task_id%}">
+        {% csrf_token %}
+        {{form}}
+        <input class="submit-button" type="submit" value="Добавить решение">
+    </form>
+</div>
+{% endblock %}
