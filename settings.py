@@ -1,9 +1,6 @@
 from os import getenv, path
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-load_dotenv("example.env")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,13 +67,14 @@ WSGI_APPLICATION = 'django_sirius.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': getenv('POSTGRES_DB'),
-        'USER': getenv('POSTGRES_USER'),
-        'PASSWORD': getenv('POSTGRES_PASSWORD'),
-        'HOST': getenv('POSTGRES_HOST'),
-        'PORT': getenv('POSTGRES_PORT'),
-        'OPTIONS': {'options': '-c search_path=public,postgres_django'},
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': path.join(BASE_DIR, 'db.sqlite3'),
+        # 'NAME': getenv('POSTGRES_DB'),
+        # 'USER': getenv('POSTGRES_USER'),
+        # 'PASSWORD': getenv('POSTGRES_PASSWORD'),
+        # 'HOST': getenv('POSTGRES_HOST'),
+        # 'PORT': getenv('POSTGRES_PORT'),
+        # 'OPTIONS': {'options': '-c search_path=public,postgres_django'},
     }
 }
 
