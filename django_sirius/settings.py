@@ -1,9 +1,6 @@
-from os import getenv
+from os import getenv, path
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-load_dotenv('example.env')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,19 +10,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = getenv('PWD')
+SECRET_KEY = 'django-insecure-z3m*g7qjd1-#m^=t(8$bb94u_#-n&d!w*_p_0q4w#o2^(=nocj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-NAME_KEY = 'NAME'
-
 
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'drf_yasg',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -36,7 +31,7 @@ INSTALLED_APPS = (
     'freelance',
     'rest_framework.authtoken',
     'rest_framework',
-)
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,13 +67,14 @@ WSGI_APPLICATION = 'django_sirius.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        NAME_KEY: getenv('POSTGRES_DB'),
-        'USER': getenv('POSTGRES_USER'),
-        'PASSWORD': getenv('POSTGRES_PASSWORD'),
-        'HOST': getenv('POSTGRES_HOST'),
-        'PORT': getenv('POSTGRES_PORT'),
-        'OPTIONS': {'options': '-c search_path=public,postgres_django'},
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': path.join(BASE_DIR, 'db.sqlite3'),
+        # 'NAME': getenv('POSTGRES_DB'),
+        # 'USER': getenv('POSTGRES_USER'),
+        # 'PASSWORD': getenv('POSTGRES_PASSWORD'),
+        # 'HOST': getenv('POSTGRES_HOST'),
+        # 'PORT': getenv('POSTGRES_PORT'),
+        # 'OPTIONS': {'options': '-c search_path=public,postgres_django'},
     }
 }
 
@@ -88,16 +84,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        NAME_KEY: 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        NAME_KEY: 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        NAME_KEY: 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        NAME_KEY: 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
