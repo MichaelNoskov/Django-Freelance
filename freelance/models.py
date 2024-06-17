@@ -133,7 +133,6 @@ class Task(UUIDMixin):
     class Meta:
         """Configuration class for Task model."""
 
-        db_table = '"freelance"."task"'
         ordering = [NAME, STATUS]
         verbose_name = _(TASK)
         verbose_name_plural = _('tasks')
@@ -160,7 +159,6 @@ class Status(CategorialParametr):
     class Meta:
         """Configuration class for Status model."""
 
-        db_table = '"freelance"."status"'
         ordering = [NAME]
         verbose_name = _(STATUS)
         verbose_name_plural = _('statuses')
@@ -196,7 +194,6 @@ class Developer(UUIDMixin):
     class Meta:
         """Configuration class for Developer model."""
 
-        db_table = '"freelance"."developer"'
         ordering = [DEVELOPER, POSITION]
         verbose_name = _(DEVELOPER)
         verbose_name_plural = _('developers')
@@ -229,7 +226,6 @@ class Position(CategorialParametr):
     class Meta:
         """Configuration class for Position model."""
 
-        db_table = '"freelance"."position"'
         ordering = [NAME]
         verbose_name = _(POSITION)
         verbose_name_plural = _('positions')
@@ -261,7 +257,6 @@ class Comment(UUIDMixin):
     class Meta:
         """Configuration class for Comment model."""
 
-        db_table = '"freelance"."comment"'
         ordering = ['publication_date']
         verbose_name = _('comment')
         verbose_name_plural = _('comment')
@@ -278,7 +273,6 @@ class TaskDeveloper(models.Model):
     class Meta:
         """Configuration class for TaskDeveloper model."""
 
-        db_table = '"freelance"."task_developer"'
         unique_together = (
             (TASK, DEVELOPER),
         )
